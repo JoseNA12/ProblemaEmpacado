@@ -1,5 +1,6 @@
 note
 	description: "Proyecto 3, problema de empacado"
+	author: "José Navarro Acuña"
 	date: "$Date$"
 	revision: "$Revision$"
 
@@ -17,36 +18,37 @@ feature {NONE} -- Initialization
 	make
 			-- Run application.
 		do
-			--| Add your code here
-			-- print ("Hello Eiffel World!%N")
-            set_tamanioCajas(get_inputUsuario())
-            set_tamanioMaximoObjetos(7)
-            set_semilla(2018)
-            set_numeroObjetos(20)
-
-			solicitarDatos()
+			solicitar_datos()
 		end
 
+
 feature {NONE}-- Access
-	entradaUsuario: INTEGER
-	tamanioCajas, tamanioMaximoObjetos, semilla, numeroObjetos: INTEGER
+	entrada_usuario: INTEGER
+	tamanio_cajas: INTEGER
+	tamanio_maximo_objetos: INTEGER
+	semilla: INTEGER
+	numero_objetos: INTEGER
 
 
 feature {NONE} -- Element change
-	set_tamanioCajas(valor: INTEGER)
+	set_tamanio_cajas(valor: INTEGER)
 		require
-			valorNoNegativo: valor > 0
+			valor_no_negativo: valor > 0
 		do
-			tamanioCajas := valor
-
+			tamanio_cajas := valor
+		ensure
+			tamanio_cajas /= 0
 		end
 
-	set_tamanioMaximoObjetos(valor: INTEGER)
+
+	set_tamanio_maximo_objetos(valor: INTEGER)
 		require
-			valorNoNegativo: valor > 0
-			valorMenorAtamanioCajas: valor < tamanioCajas
+			valor_no_negativo: valor > 0
+			valor_menor_a_tamanio_cajas: valor < tamanio_cajas
 		do
-			tamanioMaximoObjetos := valor
+			tamanio_maximo_objetos := valor
+		ensure
+			tamanio_maximo_objetos /= 0
 		end
 
 	set_semilla(valor: INTEGER)
@@ -54,93 +56,77 @@ feature {NONE} -- Element change
 			valorNoNegativo: valor > 0
 		do
 			semilla := valor
+		ensure
+			semilla /= 0
 		end
 
-	set_numeroObjetos(valor: INTEGER)
+	set_numero_objetos(valor: INTEGER)
 		require
-			valorNoNegativo: valor > 0
+			valor_no_negativo: valor > 0
 		do
-			numeroObjetos := valor
+			numero_objetos := valor
+		ensure
+			numero_objetos /= 0
 		end
 
-feature {NONE}
-	solicitarTamanioCajas(input: INTEGER)
-		require
-				print("Ingrese el tamaño de las cajas:")
-				input : entradaUsuario = get_inputUsuario()
 
+feature {NONE} --Recibir informacion usuario
+	solicitar_datos()
 		do
-			inspect entradaUsuario
-   				when /= 0 then
-					Io.new_line
-					print("Se ha establecido el valor por default.")
-					Io.new_line
-				else
-					set_tamanioCajas(entradaUsuario)
-			end
-		end
-
-feature {NONE}
-	solicitarDatos()
-		do
-			print("Ingrese el tamaño de las cajas:")
-			entradaUsuario := get_inputUsuario()
-			inspect entradaUsuario
+			print("Ingrese el tamaño de las cajas asdf hgkuyjl:")
+			entrada_usuario := get_input_usuario()
+			inspect entrada_usuario
    				when 0 then
-					Io.new_line
-					print("Se ha establecido el valor por default.")
-					Io.new_line
-
+					set_tamanio_cajas(10)
+           			print("Se ha establecido el valor por default.")
 				else
-					set_tamanioCajas(entradaUsuario)
+					set_tamanio_cajas(entrada_usuario)
 			end
 
 			Io.new_line
 			print("Ingrese el tamaño maximo de los objetos:")
-			entradaUsuario := get_inputUsuario()
-			inspect entradaUsuario
+			entrada_usuario := get_input_usuario()
+			inspect entrada_usuario
    				when 0 then
-					Io.new_line
+					set_tamanio_maximo_objetos(7)
 					print("Se ha establecido el valor por default.")
-					Io.new_line
-
 				else
-					set_tamanioMaximoObjetos(entradaUsuario)
+					set_tamanio_maximo_objetos(entrada_usuario)
 			end
 
 			Io.new_line
 			print("Ingrese el valor de la semilla:")
-			entradaUsuario := get_inputUsuario()
-			inspect entradaUsuario
+			entrada_usuario := get_input_usuario()
+			inspect entrada_usuario
    				when 0 then
-					Io.new_line
+					set_semilla(2018)
 					print("Se ha establecido el valor por default.")
-					Io.new_line
 
 				else
-					set_semilla(entradaUsuario)
+					set_semilla(entrada_usuario)
 			end
 
 			Io.new_line
 			print("Ingrese el numero de objetos:")
-			entradaUsuario := get_inputUsuario()
-			inspect entradaUsuario
+			entrada_usuario := get_input_usuario()
+			inspect entrada_usuario
    				when 0 then
-					Io.new_line
+					set_numero_objetos(20)
 					print("Se ha establecido el valor por default.")
-					Io.new_line
 
 				else
-					set_numeroObjetos(entradaUsuario)
+					set_numero_objetos(entrada_usuario)
 			end
-
+			Io.new_line
 		end
 
 
-	get_inputUsuario() : INTEGER
+	get_input_usuario() : INTEGER
 		do
 			Io.new_line
 			Io.read_integer
+
+			--Io.read_line -> Io.last_string
 
 			Result := Io.last_integer
 		end
