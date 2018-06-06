@@ -40,7 +40,6 @@ feature {NONE} -- Element change
 			tamanio_cajas /= 0
 		end
 
-
 	set_tamanio_maximo_objetos(valor: INTEGER)
 		require
 			valor_no_negativo: valor > 0
@@ -73,7 +72,7 @@ feature {NONE} -- Element change
 feature {NONE} --Recibir informacion usuario
 	solicitar_datos()
 		do
-			print("Ingrese el tamaño de las cajas asdf hgkuyjl:")
+			print("Ingrese el tamaño de las cajas:")
 			entrada_usuario := get_input_usuario()
 			inspect entrada_usuario
    				when 0 then

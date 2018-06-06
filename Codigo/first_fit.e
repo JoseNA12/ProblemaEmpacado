@@ -1,6 +1,6 @@
 note
 	description: "Summary description for {FIRST_FIT}."
-	author: "José Navarro Acuña"
+	author: ""
 	date: "$Date$"
 	revision: "$Revision$"
 
