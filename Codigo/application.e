@@ -18,16 +18,41 @@ feature {NONE} -- Initialization
 	make
 			-- Run application.
 		do
-			solicitar_datos()
+			set_default_valores
+
+			solicitar_datos_usuario
 		end
 
 
-feature {NONE}-- Access
+feature {NONE} -- Access
+	new_random: INTEGER
 	entrada_usuario: INTEGER
+	bandera: BOOLEAN
+
 	tamanio_cajas: INTEGER
 	tamanio_maximo_objetos: INTEGER
 	semilla: INTEGER
 	numero_objetos: INTEGER
+
+	default_tamanio_cajas: INTEGER
+		once
+			Result := 10
+		end
+
+	default_tamanio_maximo_objetos: INTEGER
+		once
+			Result := 7
+		end
+
+	default_semilla: INTEGER
+		once
+			Result := 2018
+		end
+
+	default_numero_objetos: INTEGER
+		once
+			Result := 20
+		end
 
 
 feature {NONE} -- Element change
@@ -68,66 +93,131 @@ feature {NONE} -- Element change
 			numero_objetos /= 0
 		end
 
-
-feature {NONE} --Recibir informacion usuario
-	solicitar_datos()
+	set_default_valores
 		do
-			print("Ingrese el tamaño de las cajas:")
-			entrada_usuario := get_input_usuario()
-			inspect entrada_usuario
-   				when 0 then
-					set_tamanio_cajas(10)
-           			print("Se ha establecido el valor por default.")
-				else
-					set_tamanio_cajas(entrada_usuario)
-			end
-
-			Io.new_line
-			print("Ingrese el tamaño maximo de los objetos:")
-			entrada_usuario := get_input_usuario()
-			inspect entrada_usuario
-   				when 0 then
-					set_tamanio_maximo_objetos(7)
-					print("Se ha establecido el valor por default.")
-				else
-					set_tamanio_maximo_objetos(entrada_usuario)
-			end
-
-			Io.new_line
-			print("Ingrese el valor de la semilla:")
-			entrada_usuario := get_input_usuario()
-			inspect entrada_usuario
-   				when 0 then
-					set_semilla(2018)
-					print("Se ha establecido el valor por default.")
-
-				else
-					set_semilla(entrada_usuario)
-			end
-
-			Io.new_line
-			print("Ingrese el numero de objetos:")
-			entrada_usuario := get_input_usuario()
-			inspect entrada_usuario
-   				when 0 then
-					set_numero_objetos(20)
-					print("Se ha establecido el valor por default.")
-
-				else
-					set_numero_objetos(entrada_usuario)
-			end
-			Io.new_line
+			set_tamanio_cajas(default_tamanio_cajas)
+			set_tamanio_maximo_objetos(default_tamanio_maximo_objetos)
+			set_semilla(default_semilla)
+			set_numero_objetos(default_numero_objetos)
 		end
 
 
-	get_input_usuario() : INTEGER
+feature {NONE} --Recibir informacion usuario
+	solicitar_datos_usuario
+		do
+			solicitar_tamanio_cajas
+			solicitar_tamanio_maximo_objetos
+			solicitar_semilla
+			solicitar_numero_objetos
+		end
+
+	obtener_entrada_usuario: INTEGER
 		do
 			Io.new_line
-			Io.read_integer
-
-			--Io.read_line -> Io.last_string
+			Io.read_integer --Io.read_line -> Io.last_string
 
 			Result := Io.last_integer
 		end
+
+	solicitar_tamanio_cajas
+		do
+			from bandera := FALSE
+			until bandera = TRUE
+			loop
+				print("Ingrese el tamano de las cajas: (-1 si no)%N")
+				entrada_usuario := obtener_entrada_usuario
+
+				if entrada_usuario > 0 then
+					set_tamanio_cajas(entrada_usuario)
+					print("- Se ha establecido el valor!%N")
+					bandera := TRUE -- salir del ciclo
+
+				elseif entrada_usuario = -1 then
+					print("- Valor default establecido!%N")
+					bandera := TRUE
+				else
+					print("- Error!, indique un valor valido!%N")
+				end
+			end
+		end
+
+	solicitar_tamanio_maximo_objetos
+		do
+			from bandera := FALSE
+			until bandera = TRUE
+			loop
+				print("Ingrese el tamano maximo de los objetos: (-1 si no)%N")
+				entrada_usuario := obtener_entrada_usuario
+
+				if entrada_usuario > 0 then
+					set_tamanio_maximo_objetos(entrada_usuario)
+					print("- Se ha establecido el valor!%N")
+					bandera := TRUE -- salir del ciclo
+
+				elseif entrada_usuario = -1 then
+					print("- Valor default establecido!%N")
+					bandera := TRUE
+				else
+					print("- Error!, indique un valor valido!%N")
+				end
+			end
+		end
+
+	solicitar_semilla
+		do
+			from bandera := FALSE
+			until bandera = TRUE
+			loop
+				print("Ingrese el valor de la semilla: (-1 si no)%N")
+				entrada_usuario := obtener_entrada_usuario
+
+				if entrada_usuario > 0 then
+					set_semilla(entrada_usuario)
+					print("- Se ha establecido el valor!%N")
+					bandera := TRUE -- salir del ciclo
+
+				elseif entrada_usuario = -1 then
+					print("- Valor default establecido!%N")
+					bandera := TRUE
+				else
+					print("- Error!, indique un valor valido!%N")
+				end
+			end
+		end
+
+	solicitar_numero_objetos
+		do
+			from bandera := FALSE
+			until bandera = TRUE
+			loop
+				print("Ingrese el numero de objetos: (-1 si no)%N")
+				entrada_usuario := obtener_entrada_usuario
+
+				if entrada_usuario > 0 then
+					set_numero_objetos(entrada_usuario)
+					print("- Se ha establecido el valor%N")
+					bandera := TRUE -- salir del ciclo
+
+				elseif entrada_usuario = -1 then
+					print("- Valor default establecido%N")
+					bandera := TRUE
+				else
+					print("- Error!, indique un valor valido%N")
+				end
+			end
+		end
+
+feature
+	generar_numero_aleatorio: INTEGER
+        -- Returns a tuple containing two unrelated random numbers between 1 and 6.
+    do
+        Result := new_random \\ 6 + 1
+    end
+
+	two_new_dice: TUPLE [INTEGER, INTEGER]
+	        -- Returns a tuple containing two unrelated random numbers between 1 and 6.
+	    do
+	        Result := [new_random \\ 6 + 1, new_random \\ 6 + 1]
+	    end
 
 end -- Class APPLICATION
