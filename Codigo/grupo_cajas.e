@@ -19,7 +19,7 @@ feature {NONE} -- Initialization
 		end
 
 feature -- Access
-    cantidad_objetos_actuales : INTEGER
+    cantidad_cajas_actuales : INTEGER
     	do
     		Result := grupo.count
     	end

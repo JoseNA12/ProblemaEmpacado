@@ -17,26 +17,38 @@ feature {NONE} -- Initialization
 
 	make
 			-- Run application.
-		local
-			grupo_cajas: GRUPO_CAJAS[CAJA]
 		do
 			set_default_valores
-
+			create secuencia_objetos.make
 			--solicitar_datos_usuario
 
-			print(generar_valor_semilla)
+			secuencia_objetos.extend(crear_objeto)--generar los objetos aqui
+			secuencia_objetos.extend(crear_objeto)
+			secuencia_objetos.extend(crear_objeto)
+			secuencia_objetos.extend(crear_objeto)
 
-			prueba
-
-			create grupo_cajas.make
+			create ff.make(secuencia_objetos)
 
 		end
 
+	crear_objeto: OBJETO --PRUEBA!!
+		local
+			objeto: OBJETO
+		do
+			create objeto.make (1, 3)
+			Result := objeto
+		end
 
 feature {NONE} -- Access
 	indice: INTEGER
 	bandera: BOOLEAN
 	entrada_usuario: INTEGER
+
+	secuencia_objetos: LINKED_LIST[OBJETO]
+
+	ff: FIRST_FIT
+	--ffd: FIRST_FIT_DECREASING
+	--bf: BEST_FIT
 
 	tamanio_cajas: INTEGER
 	tamanio_maximo_objetos: INTEGER
@@ -112,7 +124,6 @@ feature {NONE} -- Element change
 
 
 feature {NONE} --Recibir informacion usuario
-
 	solicitar_datos_usuario
 		do
 			solicitar_tamanio_cajas

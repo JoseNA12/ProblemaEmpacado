@@ -5511,12 +5511,27 @@ char *names957 [] =
 
 char *names958 [] =
 {
-"identificador",
-"tamanio",
+"secuencia_objetos",
+"array_cajas",
 };
 
 char *names959 [] =
 {
+"arrayobjetos",
+"identificador",
+"tamanio",
+};
+
+char *names960 [] =
+{
+"identificador",
+"tamanio",
+};
+
+char *names961 [] =
+{
+"secuencia_prueba",
+"ff",
 "bandera",
 "indice",
 "entrada_usuario",
@@ -5524,11 +5539,6 @@ char *names959 [] =
 "tamanio_maximo_objetos",
 "semilla",
 "numero_objetos",
-};
-
-char *names960 [] =
-{
-"grupo",
 };
 
 

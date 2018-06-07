@@ -5,7 +5,7 @@ note
 	revision: "$Revision$"
 
 class
-	CAJA -- [G->OBJETO]
+	CAJA
 
 create
 	make
@@ -16,11 +16,15 @@ feature -- Initialization
 		do
 			identificador := pId
 			tamanio := pTamanio
+			create array_objetos.make
+
 		end
 
 feature -- Access
 	identificador: INTEGER
 	tamanio: INTEGER
+
+	array_objetos: LINKED_LIST[OBJETO]
 
 	default_identificador: INTEGER
 		once

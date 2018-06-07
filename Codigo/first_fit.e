@@ -7,7 +7,37 @@ note
 class
 	FIRST_FIT
 
+create
+	make
+
+feature -- Initialization
+
+	make (pArrayObjetos: LINKED_LIST[OBJETO])
+		do
+			create array_cajas.make
+			set_secuencia_objetos(pArrayObjetos)
+		end
+
 feature -- Access
+	secuencia_objetos: LINKED_LIST[OBJETO] --lista generada de objetos recibida
+	array_cajas: LINKED_LIST[CAJA] --contendrá la solución
+
+feature  -- Element change
+	set_secuencia_objetos(secuencia: LINKED_LIST[OBJETO])
+		require
+			lista_no_vacia: secuencia.count > 0
+		do
+			secuencia_objetos := secuencia
+		end
+
+	crear_caja
+		local
+			caja: CAJA
+		do
+			create caja.make(1, 2)
+			array_cajas.extend(caja)
+
+		end
 
 feature -- Measurement
 
