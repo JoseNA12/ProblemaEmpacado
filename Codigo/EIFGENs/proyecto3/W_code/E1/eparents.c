@@ -3832,11 +3832,19 @@ static struct eif_par_types par955 = {955, ptf955, (uint16) 1, (uint16) 1, (char
 static EIF_TYPE_INDEX ptf956[] = {357,217,0xFFFF};
 static struct eif_par_types par956 = {956, ptf956, (uint16) 1, (uint16) 1, (char) 0};
 
-/* APPLICATION */
-static EIF_TYPE_INDEX ptf957[] = {150,0xFFFF};
+/* CAJA */
+static EIF_TYPE_INDEX ptf957[] = {0,0xFFFF};
 static struct eif_par_types par957 = {957, ptf957, (uint16) 1, (uint16) 0, (char) 0};
 
-int egc_partab_size_init = 957;
+/* APPLICATION */
+static EIF_TYPE_INDEX ptf958[] = {150,0xFFFF};
+static struct eif_par_types par958 = {958, ptf958, (uint16) 1, (uint16) 0, (char) 0};
+
+/* GRUPO_CAJAS [G#1] */
+static EIF_TYPE_INDEX ptf959[] = {0,0xFFFF};
+static struct eif_par_types par959 = {959, ptf959, (uint16) 1, (uint16) 1, (char) 0};
+
+int egc_partab_size_init = 959;
 struct eif_par_types *egc_partab_init[] = {
 &par0,
 &par1,
@@ -4796,6 +4804,8 @@ struct eif_par_types *egc_partab_init[] = {
 &par955,
 &par956,
 &par957,
+&par958,
+&par959,
 NULL};
 
 #ifdef __cplusplus

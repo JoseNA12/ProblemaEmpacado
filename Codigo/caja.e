@@ -5,12 +5,12 @@ note
 	revision: "$Revision$"
 
 class
-	CAJA
+	CAJA -- [G->OBJETO]
 
 create
 	make
 
-feature {NONE} -- Initialization
+feature -- Initialization
 
 	make (pId, pTamanio: INTEGER)
 		do
@@ -18,8 +18,14 @@ feature {NONE} -- Initialization
 			tamanio := pTamanio
 		end
 
-feature {CAJA} -- Access
+feature -- Access
 	identificador: INTEGER
 	tamanio: INTEGER
+
+	default_identificador: INTEGER
+		once
+			Result := 1001
+		end
+
 
 end

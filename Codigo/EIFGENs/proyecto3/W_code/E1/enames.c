@@ -5511,13 +5511,24 @@ char *names957 [] =
 
 char *names958 [] =
 {
+"identificador",
+"tamanio",
+};
+
+char *names959 [] =
+{
 "bandera",
-"new_random",
+"indice",
 "entrada_usuario",
 "tamanio_cajas",
 "tamanio_maximo_objetos",
 "semilla",
 "numero_objetos",
+};
+
+char *names960 [] =
+{
+"grupo",
 };
 
 

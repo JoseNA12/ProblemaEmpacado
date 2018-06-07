@@ -17,17 +17,26 @@ feature {NONE} -- Initialization
 
 	make
 			-- Run application.
+		local
+			grupo_cajas: GRUPO_CAJAS[CAJA]
 		do
 			set_default_valores
 
-			solicitar_datos_usuario
+			--solicitar_datos_usuario
+
+			print(generar_valor_semilla)
+
+			prueba
+
+			create grupo_cajas.make
+
 		end
 
 
 feature {NONE} -- Access
-	new_random: INTEGER
-	entrada_usuario: INTEGER
+	indice: INTEGER
 	bandera: BOOLEAN
+	entrada_usuario: INTEGER
 
 	tamanio_cajas: INTEGER
 	tamanio_maximo_objetos: INTEGER
@@ -103,6 +112,7 @@ feature {NONE} -- Element change
 
 
 feature {NONE} --Recibir informacion usuario
+
 	solicitar_datos_usuario
 		do
 			solicitar_tamanio_cajas
@@ -207,17 +217,39 @@ feature {NONE} --Recibir informacion usuario
 			end
 		end
 
-feature
-	generar_numero_aleatorio: INTEGER
-        -- Returns a tuple containing two unrelated random numbers between 1 and 6.
-    do
-        Result := new_random \\ 6 + 1
-    end
 
-	two_new_dice: TUPLE [INTEGER, INTEGER]
-	        -- Returns a tuple containing two unrelated random numbers between 1 and 6.
-	    do
-	        Result := [new_random \\ 6 + 1, new_random \\ 6 + 1]
-	    end
+feature {NONE}
+	generar_valor_semilla : INTEGER
+	local
+		random: RANDOM
+		valor_random: INTEGER
+
+		do
+			create random.set_seed(semilla)
+	   		random.start
+
+	    	valor_random := random.item
+
+	    	random.forth
+
+	    	Result := valor_random
+
+		end
+
+feature {NONE}
+	prueba
+	local
+    	r: RANDOM
+	do
+
+	    create r.set_seed (semilla) -- ... is the initial "seed"
+	    r.start
+
+		print("%N")
+	    print(r.item \\ 6 + 1)
+
+	    r.forth
+
+	end
 
 end -- Class APPLICATION

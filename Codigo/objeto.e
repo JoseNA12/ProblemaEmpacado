@@ -10,7 +10,7 @@ class
 create
 	make
 
-feature {NONE} -- Initialization
+feature -- Initialization
 
 	make (pId, pTamanio: INTEGER)
 		do
@@ -18,8 +18,13 @@ feature {NONE} -- Initialization
 			tamanio := pTamanio
 		end
 
-feature {OBJETO} -- Access
+feature -- Access
 	identificador: INTEGER
 	tamanio: INTEGER
+
+	default_identificador: INTEGER
+		once
+			Result := 1
+		end
 
 end
