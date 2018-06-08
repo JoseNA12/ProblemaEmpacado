@@ -16,27 +16,20 @@ create
 feature {NONE} -- Initialization
 
 	make
+		local
 			-- Run application.
+			ff: FIRST_FIT
+			secuencia_objetos: LINKED_LIST[OBJETO]
 		do
 			set_default_valores
-			create secuencia_objetos.make
 			--solicitar_datos_usuario
+			create secuencia_objetos.make
 
-			secuencia_objetos.extend(crear_objeto)--generar los objetos aqui
-			secuencia_objetos.extend(crear_objeto)
-			secuencia_objetos.extend(crear_objeto)
-			secuencia_objetos.extend(crear_objeto)
+			secuencia_objetos := generar_objetos(numero_objetos)
 
-			create ff.make(secuencia_objetos)
+			create ff.make_ff(tamanio_cajas, secuencia_objetos)
 
-		end
 
-	crear_objeto: OBJETO --PRUEBA!!
-		local
-			objeto: OBJETO
-		do
-			create objeto.make (1, 3)
-			Result := objeto
 		end
 
 feature {NONE} -- Access
@@ -44,16 +37,12 @@ feature {NONE} -- Access
 	bandera: BOOLEAN
 	entrada_usuario: INTEGER
 
-	secuencia_objetos: LINKED_LIST[OBJETO]
-
-	ff: FIRST_FIT
-	--ffd: FIRST_FIT_DECREASING
-	--bf: BEST_FIT
-
 	tamanio_cajas: INTEGER
 	tamanio_maximo_objetos: INTEGER
 	semilla: INTEGER
 	numero_objetos: INTEGER
+
+	id_actual_objeto: INTEGER
 
 	default_tamanio_cajas: INTEGER
 		once
@@ -75,6 +64,39 @@ feature {NONE} -- Access
 			Result := 20
 		end
 
+	default_identificador_objeto: INTEGER
+		once
+			Result := 1
+		end
+
+
+feature -- Implementation
+	crear_objeto(pTamanio: INTEGER): OBJETO
+		local
+			nuevo_objeto: OBJETO
+		do
+			create nuevo_objeto.make(id_actual_objeto, pTamanio)
+			set_id_objeto(id_actual_objeto + 1)
+			Result := nuevo_objeto
+		end
+
+	generar_objetos(pNumero_objetos: INTEGER): LINKED_LIST[OBJETO]
+		local
+			array_objetos: LINKED_LIST[OBJETO]
+		do
+			create array_objetos.make
+
+			from
+				indice := 0
+			until
+				indice >= pNumero_objetos
+			loop
+				array_objetos.extend(crear_objeto(12)) --el tamaño deberia ser constante, la semilla y eso
+				indice := indice + 1
+			end
+
+			Result := array_objetos
+		end
 
 feature {NONE} -- Element change
 	set_tamanio_cajas(valor: INTEGER)
@@ -114,12 +136,22 @@ feature {NONE} -- Element change
 			numero_objetos /= 0
 		end
 
+	set_id_objeto(pId: INTEGER)
+		require
+			id_mayor_al_actual: pId > id_actual_objeto
+		do
+			id_actual_objeto := pId
+		ensure
+			id_actual_objeto > old id_actual_objeto
+		end
+
 	set_default_valores
 		do
 			set_tamanio_cajas(default_tamanio_cajas)
 			set_tamanio_maximo_objetos(default_tamanio_maximo_objetos)
 			set_semilla(default_semilla)
 			set_numero_objetos(default_numero_objetos)
+			set_id_objeto(default_identificador_objeto)
 		end
 
 

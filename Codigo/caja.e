@@ -26,10 +26,4 @@ feature -- Access
 
 	array_objetos: LINKED_LIST[OBJETO]
 
-	default_identificador: INTEGER
-		once
-			Result := 1001
-		end
-
-
 end

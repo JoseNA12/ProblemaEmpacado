@@ -22,9 +22,4 @@ feature -- Access
 	identificador: INTEGER
 	tamanio: INTEGER
 
-	default_identificador: INTEGER
-		once
-			Result := 1
-		end
-
 end
