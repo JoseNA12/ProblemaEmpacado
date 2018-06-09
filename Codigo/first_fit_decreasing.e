@@ -18,15 +18,43 @@ feature -- Initialization
 	make_ffd(pTamanio_cajas: INTEGER; pSecuencia_objetos: LINKED_LIST[OBJETO])
 		do
 			make_ff(pTamanio_cajas, ordenar_secuencia_objetos(pSecuencia_objetos)) --FIRST_FIT
-
 		end
 
-feature -- Implementation
+feature {NONE} -- Implementation
 	ordenar_secuencia_objetos(pSecuencia: LINKED_LIST[OBJETO]): LINKED_LIST[OBJETO]
+		require
+			pSecuencia.count > 0
 		local
-			tempVar, i, j: INTEGER
+			i_Agregado: INTEGER
+			i_Candidato: INTEGER
+			i_Opositor: INTEGER
+			obj_temp: OBJETO
 		do
+			from
+				i_Agregado := 1
+			until
+				i_Agregado > pSecuencia.count
+			loop
+				i_Candidato := i_Agregado
 
+				from
+					i_Opositor := i_Candidato + 1
+				until
+					i_Opositor > pSecuencia.count
+				loop
+					if pSecuencia.i_th(i_Candidato).get_tamanio >= pSecuencia.i_th(i_Opositor).get_tamanio then
+						i_Opositor := i_Opositor + 1
+					else
+						i_Candidato := i_Opositor
+						i_Opositor := i_Opositor + 1
+					end
+				end
+
+				obj_temp := pSecuencia.i_th(i_Agregado)
+				pSecuencia.put_i_th(pSecuencia.i_th(i_Candidato), i_Agregado)
+				pSecuencia.put_i_th(obj_temp, i_Candidato)
+				i_Agregado := i_Agregado + 1
+			end
 
 			Result := pSecuencia
 		end

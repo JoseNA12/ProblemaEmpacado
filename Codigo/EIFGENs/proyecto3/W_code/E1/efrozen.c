@@ -13417,37 +13417,45 @@ extern EIF_INTEGER_32 F960_7126();
 extern EIF_INTEGER_32 F960_7127();
 extern EIF_INTEGER_32 F960_7128();
 extern EIF_REFERENCE F960_7129();
-extern void F961_7168();
 extern void F961_7138();
 extern void F961_7139();
-extern void F962_7140();
-extern EIF_BOOLEAN F962_7141();
-extern EIF_INTEGER_32 F962_7142();
-extern EIF_INTEGER_32 F962_7143();
-extern EIF_INTEGER_32 F962_7144();
-extern EIF_INTEGER_32 F962_7145();
-extern EIF_INTEGER_32 F962_7146();
-extern EIF_INTEGER_32 F962_7147();
-extern EIF_INTEGER_32 F962_7148();
-extern EIF_INTEGER_32 F962_7149();
-extern EIF_INTEGER_32 F962_7150();
-extern EIF_INTEGER_32 F962_7151();
-extern EIF_INTEGER_32 F962_7152();
-extern EIF_REFERENCE F962_7153();
-extern EIF_REFERENCE F962_7154();
-extern void F962_7155();
-extern void F962_7156();
-extern void F962_7157();
-extern void F962_7158();
-extern void F962_7159();
-extern void F962_7160();
-extern void F962_7161();
-extern EIF_INTEGER_32 F962_7162();
-extern void F962_7163();
-extern void F962_7164();
-extern void F962_7165();
-extern void F962_7166();
-extern void F962_7167();
+extern EIF_INTEGER_32 F961_7140();
+extern void F961_7174();
+extern void F962_7141();
+extern void F962_7142();
+extern void F962_7175();
+extern void F963_7143();
+extern EIF_REFERENCE F963_7144();
+extern void F963_7176();
+extern void F964_7171();
+extern void F964_7172();
+extern void F964_7173();
+extern void F964_7145();
+extern EIF_BOOLEAN F964_7146();
+extern EIF_INTEGER_32 F964_7147();
+extern EIF_INTEGER_32 F964_7148();
+extern EIF_INTEGER_32 F964_7149();
+extern EIF_INTEGER_32 F964_7150();
+extern EIF_INTEGER_32 F964_7151();
+extern EIF_INTEGER_32 F964_7152();
+extern EIF_INTEGER_32 F964_7153();
+extern EIF_INTEGER_32 F964_7154();
+extern EIF_INTEGER_32 F964_7155();
+extern EIF_INTEGER_32 F964_7156();
+extern EIF_INTEGER_32 F964_7157();
+extern EIF_INTEGER_32 F964_7158();
+extern EIF_REFERENCE F964_7159();
+extern EIF_REFERENCE F964_7160();
+extern void F964_7161();
+extern void F964_7162();
+extern void F964_7163();
+extern void F964_7164();
+extern void F964_7165();
+extern void F964_7166();
+extern void F964_7167();
+extern EIF_INTEGER_32 F964_7168();
+extern void F964_7169();
+extern void F964_7170();
 
 #ifdef __cplusplus
 }
@@ -26870,37 +26878,45 @@ fnptr egc_frozen_init[] = {
 (fnptr) F960_7127,
 (fnptr) F960_7128,
 (fnptr) F960_7129,
-(fnptr) F961_7168,
 (fnptr) F961_7138,
 (fnptr) F961_7139,
-(fnptr) F962_7140,
+(fnptr) F961_7140,
+(fnptr) F961_7174,
 (fnptr) F962_7141,
 (fnptr) F962_7142,
-(fnptr) F962_7143,
-(fnptr) F962_7144,
-(fnptr) F962_7145,
-(fnptr) F962_7146,
-(fnptr) F962_7147,
-(fnptr) F962_7148,
-(fnptr) F962_7149,
-(fnptr) F962_7150,
-(fnptr) F962_7151,
-(fnptr) F962_7152,
-(fnptr) F962_7153,
-(fnptr) F962_7154,
-(fnptr) F962_7155,
-(fnptr) F962_7156,
-(fnptr) F962_7157,
-(fnptr) F962_7158,
-(fnptr) F962_7159,
-(fnptr) F962_7160,
-(fnptr) F962_7161,
-(fnptr) F962_7162,
-(fnptr) F962_7163,
-(fnptr) F962_7164,
-(fnptr) F962_7165,
-(fnptr) F962_7166,
-(fnptr) F962_7167,
+(fnptr) F962_7175,
+(fnptr) F963_7143,
+(fnptr) F963_7144,
+(fnptr) F963_7176,
+(fnptr) F964_7171,
+(fnptr) F964_7172,
+(fnptr) F964_7173,
+(fnptr) F964_7145,
+(fnptr) F964_7146,
+(fnptr) F964_7147,
+(fnptr) F964_7148,
+(fnptr) F964_7149,
+(fnptr) F964_7150,
+(fnptr) F964_7151,
+(fnptr) F964_7152,
+(fnptr) F964_7153,
+(fnptr) F964_7154,
+(fnptr) F964_7155,
+(fnptr) F964_7156,
+(fnptr) F964_7157,
+(fnptr) F964_7158,
+(fnptr) F964_7159,
+(fnptr) F964_7160,
+(fnptr) F964_7161,
+(fnptr) F964_7162,
+(fnptr) F964_7163,
+(fnptr) F964_7164,
+(fnptr) F964_7165,
+(fnptr) F964_7166,
+(fnptr) F964_7167,
+(fnptr) F964_7168,
+(fnptr) F964_7169,
+(fnptr) F964_7170,
 };
 
 int egc_fpatidtab_init[] = {
@@ -40315,9 +40331,19 @@ int egc_fpatidtab_init[] = {
 54,
 13,
 0,
+112,
+5,
+54,
 0,
 112,
 5,
+0,
+112,
+4,
+0,
+5,
+5,
+3,
 5,
 19,
 13,
@@ -40331,6 +40357,7 @@ int egc_fpatidtab_init[] = {
 13,
 13,
 13,
+8,
 50,
 50,
 25,
@@ -40343,9 +40370,6 @@ int egc_fpatidtab_init[] = {
 13,
 5,
 5,
-5,
-5,
-3,
 };
 
 #ifdef __cplusplus

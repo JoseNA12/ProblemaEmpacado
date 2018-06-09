@@ -41,8 +41,8 @@ SYSTEM_IN_DYNAMIC_LIB = proyecto3.dll
 
 OBJECTS = big_file_C1_c.o 
 
-OLDOBJECTS =  ap962.o ap962d.o fi961.o fi961d.o ob959.o ob959d.o fi960.o fi960d.o \
-	ca958.o ca958d.o 
+OLDOBJECTS =  ap964.o ap964d.o fi962.o fi962d.o fi963.o fi963d.o be961.o be961d.o \
+	ob959.o ob959d.o fi960.o fi960d.o ca958.o ca958d.o 
 
 all::  Cobj1.o
 

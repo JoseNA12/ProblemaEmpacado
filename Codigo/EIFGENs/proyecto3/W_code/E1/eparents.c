@@ -3844,15 +3844,23 @@ static struct eif_par_types par958 = {958, ptf958, (uint16) 1, (uint16) 0, (char
 static EIF_TYPE_INDEX ptf959[] = {0,0xFFFF};
 static struct eif_par_types par959 = {959, ptf959, (uint16) 1, (uint16) 0, (char) 0};
 
-/* FIRST_FIT */
+/* BEST_FIT */
 static EIF_TYPE_INDEX ptf960[] = {959,0xFFFF};
 static struct eif_par_types par960 = {960, ptf960, (uint16) 1, (uint16) 0, (char) 0};
 
-/* APPLICATION */
-static EIF_TYPE_INDEX ptf961[] = {150,0xFFFF};
+/* FIRST_FIT */
+static EIF_TYPE_INDEX ptf961[] = {959,0xFFFF};
 static struct eif_par_types par961 = {961, ptf961, (uint16) 1, (uint16) 0, (char) 0};
 
-int egc_partab_size_init = 961;
+/* FIRST_FIT_DECREASING */
+static EIF_TYPE_INDEX ptf962[] = {961,0xFFFF};
+static struct eif_par_types par962 = {962, ptf962, (uint16) 1, (uint16) 0, (char) 0};
+
+/* APPLICATION */
+static EIF_TYPE_INDEX ptf963[] = {150,0xFFFF};
+static struct eif_par_types par963 = {963, ptf963, (uint16) 1, (uint16) 0, (char) 0};
+
+int egc_partab_size_init = 963;
 struct eif_par_types *egc_partab_init[] = {
 &par0,
 &par1,
@@ -4816,6 +4824,8 @@ struct eif_par_types *egc_partab_init[] = {
 &par959,
 &par960,
 &par961,
+&par962,
+&par963,
 NULL};
 
 #ifdef __cplusplus

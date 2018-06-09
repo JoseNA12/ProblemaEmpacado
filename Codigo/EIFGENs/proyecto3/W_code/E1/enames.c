@@ -5541,6 +5541,22 @@ char *names961 [] =
 
 char *names962 [] =
 {
+"secuencia_objetos",
+"lista_cajas",
+"id_actual_caja",
+"tamanio_cajas",
+};
+
+char *names963 [] =
+{
+"secuencia_objetos",
+"lista_cajas",
+"id_actual_caja",
+"tamanio_cajas",
+};
+
+char *names964 [] =
+{
 "bandera",
 "entrada_usuario",
 "tamanio_cajas",

@@ -18,24 +18,69 @@ feature {NONE} -- Initialization
 	make
 		local
 			-- Run application.
-			ff: FIRST_FIT
-			ffd: FIRST_FIT_DECREASING
-			secuencia_objetos: LINKED_LIST[OBJETO]
+			ff: FIRST_FIT;
+			ffd: FIRST_FIT_DECREASING;
+			bf: BEST_FIT;
+			mi_secuencia_objetos: LINKED_LIST[OBJETO];
+			mi_secuencia_objetos_: LINKED_LIST[OBJETO];
 		do
 			set_default_valores
 			--solicitar_datos_usuario
 
-			create secuencia_objetos.make
-			secuencia_objetos := generar_objetos(numero_objetos)
-			--print_secuencia(secuencia_objetos)
+			create mi_secuencia_objetos.make
+			create mi_secuencia_objetos_.make
+			--secuencia_objetos := generar_objetos(numero_objetos)
+			mi_secuencia_objetos.extend(crear_objeto(6))
+			mi_secuencia_objetos.extend(crear_objeto(7))
+			mi_secuencia_objetos.extend(crear_objeto(3))
+			mi_secuencia_objetos.extend(crear_objeto(2))
+			mi_secuencia_objetos.extend(crear_objeto(2))
+			mi_secuencia_objetos.extend(crear_objeto(2))
 
-			create ff.make_ff(tamanio_cajas, secuencia_objetos)
+			mi_secuencia_objetos_.copy(mi_secuencia_objetos) -- secuencia original
+
+			print("%N FFD: %N")
+			create ffd.make_ffd(tamanio_cajas, mi_secuencia_objetos)
+			ffd.ejecutar_ff
+			--ffd.print_secuencia
+			ffd.print_cajas
+
+			print("%N FF: %N")
+			create ff.make_ff(tamanio_cajas, mi_secuencia_objetos_)
 			ff.ejecutar_ff
-			--ff.print_cajas
+			--ff.print_secuencia
+			ff.print_cajas
 
-			create ffd.make_ffd(tamanio_cajas, secuencia_objetos)
+			print("%N BF: %N")
+			create bf.make_bf(tamanio_cajas, mi_secuencia_objetos_)
+			bf.ejecutar_bf
+			--bf.print_secuencia
+			bf.print_cajas
 
 
+			--print_datos_generales(secuencia_objetos)
+
+
+			-- CAMBIAR EL TAMAÑO DEFAULT DE LAS CAJAS
+			-- LO CAMBIÉ A 11 PARA COMPARAR RESULTADOS CON EL WORD
+
+		end
+
+feature -- ELIMINAR LUEGO
+	print_secuencia(p: LINKED_LIST[OBJETO])
+		local
+			i: INTEGER
+		do
+			from
+				i := 1
+			until
+				i > p.count
+			loop
+				print(p.i_th(i))
+				print(", ")
+
+				i := i + 1
+			end
 		end
 
 feature {NONE} -- Access
@@ -51,7 +96,7 @@ feature {NONE} -- Access
 
 	default_tamanio_cajas: INTEGER
 		once
-			Result := 10
+			Result := 11
 		end
 
 	default_tamanio_maximo_objetos: INTEGER
@@ -73,6 +118,24 @@ feature {NONE} -- Access
 		once
 			Result := 1
 		end
+
+	get_suma_tamanio_objs(pSecuencia: LINKED_LIST[OBJETO]): INTEGER
+		require
+				pSecuencia.count > 0
+			local
+				i, suma_tam_obj: INTEGER
+			do
+				from
+					i := 1
+				until
+					i > pSecuencia.count
+				loop
+					suma_tam_obj := suma_tam_obj + pSecuencia.i_th(i).get_tamanio
+					i := i + 1
+				end
+
+				Result := suma_tam_obj
+			end
 
 
 feature {NONE} -- Implementation
@@ -274,21 +337,29 @@ feature {NONE} --Recibir informacion usuario
 		end
 
 
-feature {NONE}
-	print_secuencia(secuencia_objetos: LINKED_LIST[OBJETO])
+feature {NONE} -- Salida
+	print_datos_generales(pSecuencia: LINKED_LIST[OBJETO])
 		local
-			i: INTEGER
+			suma_tam_obj: INTEGER
 		do
-			from
-				i := 1
-			until
-				i > secuencia_objetos.count
-			loop
-				print(secuencia_objetos.at(i))
-				io.new_line
+			suma_tam_obj := get_suma_tamanio_objs(pSecuencia)
 
-				i := i + 1
-			end
+			print("Datos generales: %N")
+			print("- Tamanio de las cajas: ")
+			print(tamanio_cajas)
+			io.new_line
+			print("- Tamanio maximo de los objetos: ")
+			print(tamanio_maximo_objetos)
+			io.new_line
+			print("- Semilla: ")
+			print(semilla)
+			io.new_line
+			print("- Numero de objetos generados: ")
+			print(numero_objetos)
+			io.new_line
+			print("- Suma del tamanio de los objetos: ")
+			print(suma_tam_obj)
+			io.new_line
 		end
 
 end -- Class APPLICATION
