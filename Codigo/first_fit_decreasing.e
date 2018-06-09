@@ -7,6 +7,31 @@ note
 class
 	FIRST_FIT_DECREASING
 
+inherit
+	FIRST_FIT
+
+create
+	make_ffd
+
+feature -- Initialization
+
+	make_ffd(pTamanio_cajas: INTEGER; pSecuencia_objetos: LINKED_LIST[OBJETO])
+		do
+			make_ff(pTamanio_cajas, ordenar_secuencia_objetos(pSecuencia_objetos)) --FIRST_FIT
+
+		end
+
+feature -- Implementation
+	ordenar_secuencia_objetos(pSecuencia: LINKED_LIST[OBJETO]): LINKED_LIST[OBJETO]
+		local
+			tempVar, i, j: INTEGER
+		do
+
+
+			Result := pSecuencia
+		end
+
+
 feature -- Access
 
 feature -- Measurement

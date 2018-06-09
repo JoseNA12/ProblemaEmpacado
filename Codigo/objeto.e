@@ -18,8 +18,19 @@ feature -- Initialization
 			tamanio := pTamanio
 		end
 
-feature -- Access
+feature {NONE} -- Access
 	identificador: INTEGER
 	tamanio: INTEGER
+
+feature -- Access
+	get_identificador: INTEGER
+		do
+			Result := identificador
+		end
+
+	get_tamanio: INTEGER
+		do
+			Result := tamanio
+		end
 
 end

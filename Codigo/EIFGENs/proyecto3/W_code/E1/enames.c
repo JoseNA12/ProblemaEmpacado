@@ -5511,34 +5511,43 @@ char *names957 [] =
 
 char *names958 [] =
 {
-"secuencia_objetos",
-"array_cajas",
+"lista_objetos",
+"identificador",
+"tamanio",
+"espacio_disponible",
 };
 
 char *names959 [] =
 {
-"arrayobjetos",
 "identificador",
 "tamanio",
 };
 
 char *names960 [] =
 {
-"identificador",
-"tamanio",
+"secuencia_objetos",
+"lista_cajas",
+"id_actual_caja",
+"tamanio_cajas",
 };
 
 char *names961 [] =
 {
-"secuencia_prueba",
-"ff",
+"secuencia_objetos",
+"lista_cajas",
+"id_actual_caja",
+"tamanio_cajas",
+};
+
+char *names962 [] =
+{
 "bandera",
-"indice",
 "entrada_usuario",
 "tamanio_cajas",
 "tamanio_maximo_objetos",
 "semilla",
 "numero_objetos",
+"id_actual_objeto",
 };
 
 

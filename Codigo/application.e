@@ -19,21 +19,26 @@ feature {NONE} -- Initialization
 		local
 			-- Run application.
 			ff: FIRST_FIT
+			ffd: FIRST_FIT_DECREASING
 			secuencia_objetos: LINKED_LIST[OBJETO]
 		do
 			set_default_valores
 			--solicitar_datos_usuario
-			create secuencia_objetos.make
 
+			create secuencia_objetos.make
 			secuencia_objetos := generar_objetos(numero_objetos)
+			--print_secuencia(secuencia_objetos)
 
 			create ff.make_ff(tamanio_cajas, secuencia_objetos)
+			ff.ejecutar_ff
+			--ff.print_cajas
+
+			create ffd.make_ffd(tamanio_cajas, secuencia_objetos)
 
 
 		end
 
 feature {NONE} -- Access
-	indice: INTEGER
 	bandera: BOOLEAN
 	entrada_usuario: INTEGER
 
@@ -70,7 +75,7 @@ feature {NONE} -- Access
 		end
 
 
-feature -- Implementation
+feature {NONE} -- Implementation
 	crear_objeto(pTamanio: INTEGER): OBJETO
 		local
 			nuevo_objeto: OBJETO
@@ -80,22 +85,30 @@ feature -- Implementation
 			Result := nuevo_objeto
 		end
 
+	-- generar los objetos para los algoritmos
 	generar_objetos(pNumero_objetos: INTEGER): LINKED_LIST[OBJETO]
 		local
-			array_objetos: LINKED_LIST[OBJETO]
+			secuencia_ob_temp: LINKED_LIST[OBJETO]
+			r: RANDOM
+			valor: INTEGER
 		do
-			create array_objetos.make
+			create secuencia_ob_temp.make
 
+			across
+		        1 |..| numero_objetos as i -- cantidad de numeros a generar, desde |..| hasta
 			from
-				indice := 0
-			until
-				indice >= pNumero_objetos
+				create r.set_seed(semilla) -- establecer la semilla
+		        r.start
 			loop
-				array_objetos.extend(crear_objeto(12)) --el tamaño deberia ser constante, la semilla y eso
-				indice := indice + 1
+				valor := r.item \\ tamanio_maximo_objetos + 1 -- definir los rangos de los numeros que se generan (se incluyen los numeros)
+				secuencia_ob_temp.extend(crear_objeto(valor))
+
+				--io.put_integer (valor)
+				--io.new_line
+				r.forth
 			end
 
-			Result := array_objetos
+			Result := secuencia_ob_temp
 		end
 
 feature {NONE} -- Element change
@@ -262,37 +275,20 @@ feature {NONE} --Recibir informacion usuario
 
 
 feature {NONE}
-	generar_valor_semilla : INTEGER
-	local
-		random: RANDOM
-		valor_random: INTEGER
-
+	print_secuencia(secuencia_objetos: LINKED_LIST[OBJETO])
+		local
+			i: INTEGER
 		do
-			create random.set_seed(semilla)
-	   		random.start
+			from
+				i := 1
+			until
+				i > secuencia_objetos.count
+			loop
+				print(secuencia_objetos.at(i))
+				io.new_line
 
-	    	valor_random := random.item
-
-	    	random.forth
-
-	    	Result := valor_random
-
+				i := i + 1
+			end
 		end
-
-feature {NONE}
-	prueba
-	local
-    	r: RANDOM
-	do
-
-	    create r.set_seed (semilla) -- ... is the initial "seed"
-	    r.start
-
-		print("%N")
-	    print(r.item \\ 6 + 1)
-
-	    r.forth
-
-	end
 
 end -- Class APPLICATION
