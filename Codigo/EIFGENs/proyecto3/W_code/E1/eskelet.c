@@ -22243,13 +22243,13 @@ g_atype964_6,
 
 static const int32 cn_attr964 [] =
 {
-4981,
 4982,
 4983,
 4984,
 4985,
 4986,
 4987,
+4988,
 };
 
 const struct cnode egc_fsystem_init[] = {

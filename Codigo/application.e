@@ -29,59 +29,63 @@ feature {NONE} -- Initialization
 
 			create mi_secuencia_objetos.make
 			create mi_secuencia_objetos_.make
-			--secuencia_objetos := generar_objetos(numero_objetos)
-			mi_secuencia_objetos.extend(crear_objeto(6))
-			mi_secuencia_objetos.extend(crear_objeto(7))
-			mi_secuencia_objetos.extend(crear_objeto(3))
-			mi_secuencia_objetos.extend(crear_objeto(2))
-			mi_secuencia_objetos.extend(crear_objeto(2))
-			mi_secuencia_objetos.extend(crear_objeto(2))
+			mi_secuencia_objetos := generar_objetos(numero_objetos)
+			--mi_secuencia_objetos.extend(crear_objeto(6))
+			--mi_secuencia_objetos.extend(crear_objeto(7))
+			--mi_secuencia_objetos.extend(crear_objeto(3))
+			--mi_secuencia_objetos.extend(crear_objeto(2))
+			--mi_secuencia_objetos.extend(crear_objeto(2))
+			--mi_secuencia_objetos.extend(crear_objeto(2))
 
 			mi_secuencia_objetos_.copy(mi_secuencia_objetos) -- secuencia original
 
-			print("%N FFD: %N")
 			create ffd.make_ffd(tamanio_cajas, mi_secuencia_objetos)
 			ffd.ejecutar_ff
 			--ffd.print_secuencia
-			ffd.print_cajas
 
-			print("%N FF: %N")
 			create ff.make_ff(tamanio_cajas, mi_secuencia_objetos_)
 			ff.ejecutar_ff
 			--ff.print_secuencia
-			ff.print_cajas
 
-			print("%N BF: %N")
 			create bf.make_bf(tamanio_cajas, mi_secuencia_objetos_)
 			bf.ejecutar_bf
 			--bf.print_secuencia
+
+			print_datos_generales(mi_secuencia_objetos_)
+			print_listado_objetos(mi_secuencia_objetos_)
+
+			io.new_line
+			print("%N*** First Fit Decreasing (FFD): *** %N")
+			ffd.print_cajas
+
+			print("%N Cajas requeridas: ")
+			print(ffd.get_cajas_size)
+			print("%N Promedio de ocupacion: ")
+			print(ffd.get_promedio_ocupacion)
+			io.new_line
+
+			print("%N*** First Fit (FF): *** %N")
+			ff.print_cajas
+
+			print("%N Cajas requeridas: ")
+			print(ff.get_cajas_size)
+			print("%N Promedio de ocupacion: ")
+			print(ff.get_promedio_ocupacion)
+			io.new_line
+
+			print("%N*** Best Fit (BF) *** %N")
 			bf.print_cajas
 
-
-			--print_datos_generales(secuencia_objetos)
-
+			print("%N Cajas requeridas: ")
+			print(bf.get_cajas_size)
+			print("%N Promedio de ocupacion: ")
+			print(bf.get_promedio_ocupacion)
 
 			-- CAMBIAR EL TAMAÑO DEFAULT DE LAS CAJAS
 			-- LO CAMBIÉ A 11 PARA COMPARAR RESULTADOS CON EL WORD
 
 		end
 
-feature -- ELIMINAR LUEGO
-	print_secuencia(p: LINKED_LIST[OBJETO])
-		local
-			i: INTEGER
-		do
-			from
-				i := 1
-			until
-				i > p.count
-			loop
-				print(p.i_th(i))
-				print(", ")
-
-				i := i + 1
-			end
-		end
 
 feature {NONE} -- Access
 	bandera: BOOLEAN
@@ -166,8 +170,6 @@ feature {NONE} -- Implementation
 				valor := r.item \\ tamanio_maximo_objetos + 1 -- definir los rangos de los numeros que se generan (se incluyen los numeros)
 				secuencia_ob_temp.extend(crear_objeto(valor))
 
-				--io.put_integer (valor)
-				--io.new_line
 				r.forth
 			end
 
@@ -360,6 +362,38 @@ feature {NONE} -- Salida
 			print("- Suma del tamanio de los objetos: ")
 			print(suma_tam_obj)
 			io.new_line
+		end
+
+	print_listado_objetos(pSecuencia: LINKED_LIST[OBJETO])
+		local
+			max_objetos, i_objs_por_linea, i: INTEGER
+		do
+			max_objetos := 40
+			print("%NListado de objetos: (id, tamanio)%N")
+			from
+				i := 1
+			until
+				i > pSecuencia.count
+			loop
+				if i <= max_objetos then
+					if i_objs_por_linea = 10 then
+						io.new_line
+						i_objs_por_linea := 0
+					end
+					print(" (")
+					print(pSecuencia.i_th(i).get_identificador)
+					print(", ")
+					print(pSecuencia.i_th(i).get_tamanio)
+					print(") ")
+
+					i := i + 1
+					i_objs_por_linea := i_objs_por_linea + 1
+				else
+					io.new_line
+					print("...")
+					i := pSecuencia.count + 1
+				end
+			end
 		end
 
 end -- Class APPLICATION

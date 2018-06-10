@@ -39,14 +39,13 @@ feature -- Implementation
 					i_Obj := i_Obj + 1				 	-- siguiente objeto
 				else
 					crear_caja
-
 				end
 			end
 		end
 
 	get_id_caja_mas_llena(pTamanio_obj: INTEGER): INTEGER
 		local
-			i_id_candidato, tamanio_candidato, espacio_disp_caja, i: INTEGER
+			i_id_candidato, tam_candidato, esp_caja_actual, i: INTEGER
 		do
 			i_id_candidato := -1 -- no cabe en ninguna caja
 
@@ -55,13 +54,12 @@ feature -- Implementation
 			until
 				i > get_cajas_size
 			loop
-				espacio_disp_caja := get_espacio_disp_caja(i)
+				esp_caja_actual := get_espacio_disp_caja(i)
 
-				if espacio_disp_caja >= pTamanio_obj then
-					if tamanio_candidato < espacio_disp_caja then -- hay una caja mas llena
-
-						tamanio_candidato := espacio_disp_caja
-						i_id_candidato := i
+				if tam_candidato < esp_caja_actual then
+					if esp_caja_actual >= pTamanio_obj then
+						tam_candidato := esp_caja_actual
+						i_id_candidato := i					-- guardar la posición de la caja candidata
 					end
 				end
 

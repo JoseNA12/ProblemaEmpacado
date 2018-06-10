@@ -13420,19 +13420,20 @@ extern EIF_REFERENCE F960_7129();
 extern void F961_7138();
 extern void F961_7139();
 extern EIF_INTEGER_32 F961_7140();
-extern void F961_7174();
+extern void F961_7175();
 extern void F962_7141();
 extern void F962_7142();
-extern void F962_7175();
+extern void F962_7176();
 extern void F963_7143();
 extern EIF_REFERENCE F963_7144();
-extern void F963_7176();
+extern void F963_7177();
 extern void F964_7171();
 extern void F964_7172();
 extern void F964_7173();
+extern void F964_7174();
 extern void F964_7145();
-extern EIF_BOOLEAN F964_7146();
-extern EIF_INTEGER_32 F964_7147();
+extern void F964_7146();
+extern EIF_BOOLEAN F964_7147();
 extern EIF_INTEGER_32 F964_7148();
 extern EIF_INTEGER_32 F964_7149();
 extern EIF_INTEGER_32 F964_7150();
@@ -13444,17 +13445,17 @@ extern EIF_INTEGER_32 F964_7155();
 extern EIF_INTEGER_32 F964_7156();
 extern EIF_INTEGER_32 F964_7157();
 extern EIF_INTEGER_32 F964_7158();
-extern EIF_REFERENCE F964_7159();
+extern EIF_INTEGER_32 F964_7159();
 extern EIF_REFERENCE F964_7160();
-extern void F964_7161();
+extern EIF_REFERENCE F964_7161();
 extern void F964_7162();
 extern void F964_7163();
 extern void F964_7164();
 extern void F964_7165();
 extern void F964_7166();
 extern void F964_7167();
-extern EIF_INTEGER_32 F964_7168();
-extern void F964_7169();
+extern void F964_7168();
+extern EIF_INTEGER_32 F964_7169();
 extern void F964_7170();
 
 #ifdef __cplusplus
@@ -26881,16 +26882,17 @@ fnptr egc_frozen_init[] = {
 (fnptr) F961_7138,
 (fnptr) F961_7139,
 (fnptr) F961_7140,
-(fnptr) F961_7174,
+(fnptr) F961_7175,
 (fnptr) F962_7141,
 (fnptr) F962_7142,
-(fnptr) F962_7175,
+(fnptr) F962_7176,
 (fnptr) F963_7143,
 (fnptr) F963_7144,
-(fnptr) F963_7176,
+(fnptr) F963_7177,
 (fnptr) F964_7171,
 (fnptr) F964_7172,
 (fnptr) F964_7173,
+(fnptr) F964_7174,
 (fnptr) F964_7145,
 (fnptr) F964_7146,
 (fnptr) F964_7147,
@@ -40343,8 +40345,10 @@ int egc_fpatidtab_init[] = {
 0,
 5,
 5,
+5,
 3,
 5,
+3,
 19,
 13,
 13,
@@ -40368,7 +40372,6 @@ int egc_fpatidtab_init[] = {
 5,
 5,
 13,
-5,
 5,
 };
 

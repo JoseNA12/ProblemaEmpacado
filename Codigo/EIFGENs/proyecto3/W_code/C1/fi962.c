@@ -12,7 +12,7 @@ extern "C" {
 
 extern void F962_7141(EIF_REFERENCE, EIF_TYPED_VALUE, EIF_TYPED_VALUE);
 extern void F962_7142(EIF_REFERENCE);
-extern void F962_7175(EIF_REFERENCE, int);
+extern void F962_7176(EIF_REFERENCE, int);
 extern void EIF_Minit962(void);
 
 #ifdef __cplusplus
@@ -187,7 +187,7 @@ void F962_7142 (EIF_REFERENCE Current)
 }
 
 /* {FIRST_FIT}._invariant */
-void F962_7175 (EIF_REFERENCE Current, int where)
+void F962_7176 (EIF_REFERENCE Current, int where)
 {
 	GTCX
 	char *l_feature_name = "_invariant";
@@ -200,7 +200,7 @@ void F962_7175 (EIF_REFERENCE Current, int where)
 	RTLIU(1);
 	RTLU (SK_VOID, NULL);
 	RTLU (SK_REF, &Current);
-	RTEAINV(l_feature_name, 961, Current, 0, 7174);
+	RTEAINV(l_feature_name, 961, Current, 0, 7175);
 	RTSA(Dtype(Current));
 	RTME(Dtype(Current), 0);
 	RTLO(2);

@@ -86,9 +86,10 @@ feature -- Access
 			until
 				i > lista_cajas.count
 			loop
-				print("[")
+				print(lista_cajas.i_th(i).get_identificador)
+				print(": [")
 				print_objetos_caja(lista_cajas.i_th(i))
-				print("], ")
+				print("] ")
 				io.new_line
 
 				i := i + 1
@@ -97,37 +98,44 @@ feature -- Access
 
 	print_objetos_caja(pCaja: CAJA)
 		local
-			i: INTEGER
+			max_objetos, i: INTEGER
 		do
+			max_objetos := 10
+
 			from
 				i := 1
 			until
 				i > pCaja.get_objetos_size
 			loop
-				--print("(id:")
-				--print(pCaja.get_objeto(i).get_identificador)
-				--print(", ")
-				--print("tam:")
-				print(pCaja.get_objeto(i).get_tamanio)
-				print(", ")
-				i := i + 1
+				if i <= max_objetos then
+					print(" (")
+					print(pCaja.get_objeto(i).get_identificador)
+					print(", ")
+					print(pCaja.get_objeto(i).get_tamanio)
+					print(") ")
+					i := i + 1
+
+				else
+					print(" ...")
+					i := pCaja.get_objetos_size + 1
+				end
 			end
 		end
 
-	print_secuencia
+	get_promedio_ocupacion: DOUBLE
 		local
-			i: INTEGER
+			suma_tamanio_objs, i: INTEGER
 		do
 			from
 				i := 1
 			until
-				i > secuencia_objetos.count
+				i > get_secue_obj_size
 			loop
-				print(secuencia_objetos.i_th(i))
-				print(", ")
-
+				suma_tamanio_objs := suma_tamanio_objs + get_tamanio_obj_secue(i)
 				i := i + 1
 			end
+
+			Result := suma_tamanio_objs / (get_cajas_size * tamanio_cajas)
 		end
 
 feature -- Implementation
