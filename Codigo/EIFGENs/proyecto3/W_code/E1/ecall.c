@@ -4979,6 +4979,7 @@ struct rout_info egc_forg_table_init[] = {
 	{360, (uint16) 17},
 	{360, (uint16) 18},
 	{360, (uint16) 19},
+	{360, (uint16) 20},
 	{358, (uint16) 0},
 	{358, (uint16) 1},
 	{358, (uint16) 2},

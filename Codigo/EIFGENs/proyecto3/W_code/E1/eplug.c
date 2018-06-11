@@ -128,7 +128,7 @@ void egc_init_plug (void)
 	egc_rcarg = (int32 *) eif_malloc (sizeof(int32)*egc_rcount);
 	egc_rlist[0] = "APPLICATION.make";
 	egc_rcdt[0] = 0;
-	egc_rcrid[0] = 4980;
+	egc_rcrid[0] = 4981;
 	egc_rcarg[0] = 0;
 	
 	

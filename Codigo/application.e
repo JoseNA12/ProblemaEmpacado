@@ -25,7 +25,7 @@ feature {NONE} -- Initialization
 			mi_secuencia_objetos_: LINKED_LIST[OBJETO];
 		do
 			set_default_valores
-			--solicitar_datos_usuario
+			solicitar_datos_usuario
 
 			create mi_secuencia_objetos.make
 			create mi_secuencia_objetos_.make
@@ -342,7 +342,7 @@ feature {NONE} -- Salida
 		do
 			suma_tam_obj := get_suma_tamanio_objs(pSecuencia)
 
-			print("Datos generales: %N")
+			print("%NDatos generales: %N")
 			print("- Tamanio de las cajas: ")
 			print(tamanio_cajas)
 			io.new_line
