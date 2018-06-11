@@ -41,15 +41,12 @@ feature {NONE} -- Initialization
 
 			create ffd.make_ffd(tamanio_cajas, mi_secuencia_objetos)
 			ffd.ejecutar_ff
-			--ffd.print_secuencia
 
 			create ff.make_ff(tamanio_cajas, mi_secuencia_objetos_)
 			ff.ejecutar_ff
-			--ff.print_secuencia
 
 			create bf.make_bf(tamanio_cajas, mi_secuencia_objetos_)
 			bf.ejecutar_bf
-			--bf.print_secuencia
 
 			print_datos_generales(mi_secuencia_objetos_)
 			print_listado_objetos(mi_secuencia_objetos_)
@@ -81,8 +78,7 @@ feature {NONE} -- Initialization
 			print("%N Promedio de ocupacion: ")
 			print(bf.get_promedio_ocupacion)
 
-			-- CAMBIAR EL TAMAÑO DEFAULT DE LAS CAJAS
-			-- LO CAMBIÉ A 11 PARA COMPARAR RESULTADOS CON EL WORD
+			io.new_line
 
 		end
 
@@ -100,7 +96,7 @@ feature {NONE} -- Access
 
 	default_tamanio_cajas: INTEGER
 		once
-			Result := 11
+			Result := 10
 		end
 
 	default_tamanio_maximo_objetos: INTEGER

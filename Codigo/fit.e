@@ -32,6 +32,11 @@ feature -- Access
 			Result := 1001
 		end
 
+	get_tamanio_cajas: INTEGER
+		do
+			Result := tamanio_cajas
+		end
+
 	get_cajas_size: INTEGER
 		do
 			Result := lista_cajas.count

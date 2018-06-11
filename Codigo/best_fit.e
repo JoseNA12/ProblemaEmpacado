@@ -49,6 +49,8 @@ feature -- Implementation
 		do
 			i_id_candidato := -1 -- no cabe en ninguna caja
 
+			tam_candidato := get_tamanio_cajas + 1 -- punto de partida para la comparacion
+
 			from
 				i := 1
 			until
@@ -56,10 +58,10 @@ feature -- Implementation
 			loop
 				esp_caja_actual := get_espacio_disp_caja(i)
 
-				if tam_candidato < esp_caja_actual then
+				if tam_candidato > esp_caja_actual then
 					if esp_caja_actual >= pTamanio_obj then
 						tam_candidato := esp_caja_actual
-						i_id_candidato := i					-- guardar la posición de la caja candidata
+						i_id_candidato := i				-- guardar la posición de la caja candidata
 					end
 				end
 
