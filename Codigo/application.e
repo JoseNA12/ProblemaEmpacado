@@ -232,6 +232,7 @@ feature {NONE} -- Element change
 feature {NONE} --Recibir informacion usuario
 	solicitar_datos_usuario
 		do
+			print("- Problema del empaque -%N%N")
 			solicitar_tamanio_cajas
 			solicitar_tamanio_maximo_objetos
 			solicitar_semilla
@@ -251,7 +252,7 @@ feature {NONE} --Recibir informacion usuario
 			from bandera := FALSE
 			until bandera = TRUE
 			loop
-				print("Ingrese el tamano de las cajas: (-1 si no)%N")
+				print("Ingrese el tamano de las cajas: (-1 valor default: 10)%N")
 				entrada_usuario := obtener_entrada_usuario
 
 				if entrada_usuario > 0 then
@@ -273,7 +274,7 @@ feature {NONE} --Recibir informacion usuario
 			from bandera := FALSE
 			until bandera = TRUE
 			loop
-				print("Ingrese el tamano maximo de los objetos: (-1 si no)%N")
+				print("Ingrese el tamano maximo de los objetos: (-1 valor default: 7)%N")
 				entrada_usuario := obtener_entrada_usuario
 
 				if entrada_usuario > 0 then
@@ -295,7 +296,7 @@ feature {NONE} --Recibir informacion usuario
 			from bandera := FALSE
 			until bandera = TRUE
 			loop
-				print("Ingrese el valor de la semilla: (-1 si no)%N")
+				print("Ingrese el valor de la semilla: (-1 valor default: 2018)%N")
 				entrada_usuario := obtener_entrada_usuario
 
 				if entrada_usuario > 0 then
@@ -317,7 +318,7 @@ feature {NONE} --Recibir informacion usuario
 			from bandera := FALSE
 			until bandera = TRUE
 			loop
-				print("Ingrese el numero de objetos: (-1 si no)%N")
+				print("Ingrese el numero de objetos: (-1 valor default: 20)%N")
 				entrada_usuario := obtener_entrada_usuario
 
 				if entrada_usuario > 0 then
