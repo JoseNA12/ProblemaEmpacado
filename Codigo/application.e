@@ -30,12 +30,6 @@ feature {NONE} -- Initialization
 			create mi_secuencia_objetos.make
 			create mi_secuencia_objetos_.make
 			mi_secuencia_objetos := generar_objetos(numero_objetos)
-			--mi_secuencia_objetos.extend(crear_objeto(6))
-			--mi_secuencia_objetos.extend(crear_objeto(7))
-			--mi_secuencia_objetos.extend(crear_objeto(3))
-			--mi_secuencia_objetos.extend(crear_objeto(2))
-			--mi_secuencia_objetos.extend(crear_objeto(2))
-			--mi_secuencia_objetos.extend(crear_objeto(2))
 
 			mi_secuencia_objetos_.copy(mi_secuencia_objetos) -- secuencia original
 
@@ -278,10 +272,13 @@ feature {NONE} --Recibir informacion usuario
 				entrada_usuario := obtener_entrada_usuario
 
 				if entrada_usuario > 0 then
-					set_tamanio_maximo_objetos(entrada_usuario)
-					print("- Se ha establecido el valor!%N")
-					bandera := TRUE -- salir del ciclo
-
+					if tamanio_cajas > entrada_usuario then
+						set_tamanio_maximo_objetos(entrada_usuario)
+						print("- Se ha establecido el valor!%N")
+						bandera := TRUE -- salir del ciclo	
+					else
+						print("- Error!, el valor debe ser menor que el tamanio de las cajas!%N")
+					end
 				elseif entrada_usuario = -1 then
 					print("- Valor default establecido!%N")
 					bandera := TRUE
